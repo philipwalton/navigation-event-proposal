@@ -10,7 +10,7 @@ This proposal tries to address some of the difficulties involved in SPA measurem
 
 ## Problem
 
-There are two primary challenges around measuring SPA navigation timing in Chrome today:
+There are two primary challenges around measuring SPA navigation timing in browsers today:
 
 * It's not always clear what an SPA navigation is.
 * It's not always clear when an SPA navigation begins and ends.
@@ -62,7 +62,7 @@ addEventListener('navigation', (event) => {
 
 Currently most applications that implement SPAs will likely score **worse** on the Core Web Vitals metrics than if they'd built an MPA (traditional, multi-page application).
 
-This is due to the caching benefits most sites get on all page loads in a session after the first one. In SPAs, however, all page loads after the initial page load are handled by the app, and are thus not tracked by Chrome as separate navigations.
+This is due to the caching benefits most sites get on all page loads in a session after the first one. In SPAs, however, all page loads after the initial page load are handled by the app, and are thus not tracked by browsers as separate navigations.
 
 The result is that SPAs will generally have a much higher percentage of cold-cache loads than MPAs. That combined with the fact that SPAs generally load more JavaScript in order to facilitate SPA navigation means their loads often take even longer than traditional MPAs.
 
@@ -79,7 +79,7 @@ While this is a real concern and worth worrying about, there are a few things we
 _ **The <code>navigation</code> event comes with default browser behavior.**
   For example, the navigation event would require a URL change in the address bar as well as a loading indicator. This alone would likely make it undesirable for developers to use for anything that's clearly not a real navigation. \
 - **Browsers could use heuristics to detect malicious behavior and turn SPA navigations into real navigations.**
-  The <code>navigation</code> event is designed as a progressive enhancement—which means when used properly, any <code>navigation</code> event the browser chooses not to run should still work as a full navigation. If app developers know that Chrome may choose to fallback to full navigations in some cases, they'd be less likely to try to game the metric, since it could lead to a worse user experience.
+  The <code>navigation</code> event is designed as a progressive enhancement—which means when used properly, any <code>navigation</code> event the browser chooses not to run should still work as a full navigation. If app developers know that a browser may choose to fallback to full navigations in some cases, they'd be less likely to try to game the metric, since it could lead to a worse user experience.
 
 ### Alternative designs
 
